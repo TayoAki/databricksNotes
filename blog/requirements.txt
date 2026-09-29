@@ -1,0 +1,4 @@
+# The blog builder: markdown (CommonMark + GFM tables and task lists), GitHub-style anchors, highlighting.
+markdown-it-py>=4.1,<5
+mdit-py-plugins>=0.5
+pygments>=2.17

@@ -8,3 +8,6 @@ __pycache__/
 spark-warehouse/
 metastore_db/
 derby.log
+
+# The built blog (python blog/build.py writes it)
+blog/site/
