@@ -13,7 +13,7 @@ Each case study is a story I can tell in an interview: what I noticed, how I tes
 | 03 | [Fail-open patterns](03-fail-open-patterns.md) | lakeflow_framework, vibe-coding-workshop-template, technical-services-solutions, consort | Seven places where an error becomes a success signal or a silent "repair". WAF and consort as fail-closed counter-examples | #1 CONFIRMED by a test with repo fixtures; others by code read or deep-read execution (per row) |
 | 04 | [Lazy evaluation meets a mutable table](04-lazy-evaluation-meets-mutable-tables.md) | my Exercise 02 | A DataFrame defined before a write sees the write. `versionAsOf` pins it, and `.cache()` does **not** | CONFIRMED, plus a mutation test |
 | 05 | [pyarrow is installed, but not where the code runs](05-the-worker-python-interpreter.md) | my Exercise 03 | Driver and workers can run different Pythons. `PYSPARK_PYTHON`, and `%pip` vs `!pip` on Databricks | CONFIRMED |
-| 06 | [Near-misses: what I almost got wrong](06-near-misses-and-false-positives.md) | this whole investigation | 13 wrong turns, what caught each one, and the habit it created | Every row backed by an executed check |
+| 06 | [Near-misses: what I almost got wrong](06-near-misses-and-false-positives.md) | this whole investigation | 14 wrong turns, what caught each one, and the habit it created | Every row backed by an executed check |
 | 07 | [A join whose direction is decided by how you type the condition](07-lakeflow-delta-join-alias-parsing.md) | lakeflow_framework | `a = b` vs `b = a` changes which side a LEFT join keeps. Phantom aliases from literals. Quarantine rules applied per table before the join. Mutated config. No watermarks | CONFIRMED with the framework's **real** classes on OSS Spark |
 | 08 | [Two ways to price usage](08-price-join-containment-vs-point-in-time.md) | starter-journey vs databricks-waf | A containment INNER JOIN drops usage that spans a price change or has no price. Point-in-time LEFT JOIN plus coverage columns | Mechanics CONFIRMED. Real-world magnitude data-dependent (WAF measured 0 spanning rows on labs) |
 
@@ -33,6 +33,9 @@ All scripts locate `exercises/` relative to themselves, so they run from any dir
 | [`stream_stream_join_state.py`](evidence/stream_stream_join_state.py) | 07 E | exercises env |
 | [`observe_streaming.py`](evidence/observe_streaming.py) | Exercise 04 observations | exercises env |
 | [`price_join_demo.py`](evidence/price_join_demo.py) | 08 | exercises env |
+| [`fuzzy_column_match.py`](evidence/fuzzy_column_match.py) | 03 #4 | Python only |
+| [`lakeflow_validation_gaps.py`](evidence/lakeflow_validation_gaps.py) | [`repos/lakeflow_framework.md`](../repos/lakeflow_framework.md) (Draft 7 `dependentSchemas`, suffix str) | `jsonschema` |
+| [`scd_filter_before_rank.py`](evidence/scd_filter_before_rank.py) | [`repos/databricks-waf.md`](../repos/databricks-waf.md), system-tables cheatsheet | exercises env |
 | [`null_semantics_table.py`](evidence/null_semantics_table.py) | [`playbook/07-null-semantics.md`](../playbook/07-null-semantics.md) | exercises env |
 
 ## Themes across the case studies
