@@ -1,0 +1,7 @@
+# Local stand-in for a Databricks cluster: open-source Spark + Delta Lake.
+# Versions verified together on Python 3.11 + OpenJDK 21 (see exercises/README.md).
+pyspark==4.0.1
+delta-spark==4.0.0
+pytest>=8
+pandas>=2
+pyarrow>=15

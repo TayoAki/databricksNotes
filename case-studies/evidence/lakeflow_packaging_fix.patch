@@ -1,0 +1,32 @@
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,6 +1,6 @@
+ [build-system]
+ requires = ["setuptools>=68", "wheel"]
+-build-backend = "setuptools.backends.legacy:build"
++build-backend = "setuptools.build_meta"
+ 
+ [project]
+ name = "lakeflow-framework"
+--- a/src/lakeflow_framework/dataflow/cdc_snapshot.py
++++ b/src/lakeflow_framework/dataflow/cdc_snapshot.py
+@@ -9,7 +9,7 @@
+ from pyspark.sql import functions as F
+ import pyspark.sql.types as T
+ 
+-import pipeline_config
++import lakeflow_framework.pipeline_config as pipeline_config
+ 
+ from .dataflow_config import DataFlowConfig
+ from .sources import SourceDelta, SourceBatchFiles, ReadConfig
+--- a/src/lakeflow_framework/utility.py
++++ b/src/lakeflow_framework/utility.py
+@@ -528,7 +528,7 @@
+ 
+ def set_logger(logger_name: str, log_level: str = "INFO") -> logging.Logger:
+     """Here for backwards compatibility. Use resolve_logger instead. Set up and return a logger with a specified name and log level."""
+-    from logger import create_default_logger
++    from lakeflow_framework.logger import create_default_logger
+ 
+     return create_default_logger(logger_name, log_level)
+ 
