@@ -3,5 +3,5 @@
 pyspark==4.0.1
 delta-spark==4.0.0
 pytest>=8
-pandas>=2
+pandas>=2,<3   # PySpark 4.0.x's pandas-on-Spark (imported by pyspark.testing) breaks on pandas 3
 pyarrow>=15

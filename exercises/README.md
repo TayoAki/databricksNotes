@@ -10,7 +10,7 @@ Five customer-shaped problems, each with working code, tests, and a walkthrough 
 | 04 | [Streaming semantics](ex04_streaming_semantics/WALKTHROUGH.md) | "Why is the last hour always missing?" | Checkpoints, watermarks/append mode, stream-static joins, testing a hypothesis about someone else's code | 5 |
 | 05 | [Debug kata](ex05_debug_kata/DEBUGGING_LOG.md) | "The job is green but the numbers are off" | Reading unfamiliar code, 8 planted real-world bugs, row-count ledger | 12 + 9 xfail |
 
-**Last full run:** `48 passed, 9 xfailed in 157.86s` (the 9 xfails are the kata's buggy implementation, which *must* fail).
+**Last full run:** `48 passed, 9 xfailed in 162.37s`, in a fresh venv built only from `requirements.txt` (the 9 xfails are the kata's buggy implementation, which *must* fail).
 
 ## Run it
 
@@ -24,11 +24,12 @@ python -m ex01_messy_orders_medallion.pipeline   # print tables + physical plan
 python -m ex03_execution_and_scaling.lab         # print the measurements
 ```
 
-Verified with Python 3.11.15, OpenJDK 21.0.10, PySpark 4.0.1, delta-spark 4.0.0.
+Verified with Python 3.11.15, OpenJDK 21.0.10, PySpark 4.0.1, delta-spark 4.0.0, pandas 2.3.3, pyarrow 25.0.1, pytest 9.1.1.
 
-**Troubleshooting (both hit while building this):**
+**Troubleshooting (all three hit while building this):**
 - `JAVA_GATEWAY_EXITED` on the very first run: Spark downloads the Delta jars through Ivy at JVM start-up, and a slow first download can outlast the gateway's start-up wait. The jars land in `~/.ivy2*/jars`; just re-run.
 - `ModuleNotFoundError: pyarrow` inside a pandas UDF although pyarrow is installed: the Python workers started a different interpreter. `common/spark_session.py` pins `PYSPARK_PYTHON` to the driver's interpreter (see `case-studies/05`).
+- `ImportError: cannot import name '_builtin_table'` when importing `pyspark.testing` or `pyspark.pandas`: pandas 3 with PySpark 4.0.x. `requirements.txt` pins `pandas<3` (see `case-studies/06` #15).
 
 ## Local vs Databricks: what differs
 

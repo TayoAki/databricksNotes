@@ -44,7 +44,7 @@ landing/*.jsonl ──► BRONZE  (raw, append-only, + lineage: _source_file, _i
                  GOLD: fct_daily_revenue, top_customers_per_region
 ```
 
-Each arrow has a single responsibility. When a number is wrong you can bisect the pipeline by counting rows at each arrow: the "row-count ledger" in `05-resilience-debugging.md`.
+Each arrow has a single responsibility. When a number is wrong you can bisect the pipeline by counting rows at each arrow: the "row-count ledger" in `playbook/04-resilience-and-debugging.md`.
 
 ## 3. Key decisions (and the alternative I rejected)
 

@@ -45,7 +45,7 @@ def _chain(changes: DataFrame) -> DataFrame:
         .withColumn("is_current", F.col("effective_to").isNull())
         .withColumnRenamed("effective_ts", "effective_from")
         # 64-bit hash surrogate key: fine at this scale. At ~1e9 versions the collision
-        # probability is ~2.7%; see notes/06-execution-and-scaling.md for the maths.
+        # probability is ~2.7%; see playbook/05-execution-and-scaling.md for the maths.
         .withColumn("customer_sk", F.xxhash64(KEY, "effective_from"))
         .select(*[f.split()[0] for f in DIM_SCHEMA.split(", ")])
     )

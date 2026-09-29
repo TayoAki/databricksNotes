@@ -70,7 +70,7 @@ Finding 1 is my favourite lesson from the six repos: **a counter that bounds a l
 - **Verify cost grows with the product:** each GREEN runs the **full** accumulated suite on fresh branches, so per-cycle verify time grows linearly with delivered stories and lifetime verify cost roughly quadratically.
 - **Worst case = schema contract changes:** two expand/contract migration stories took 73% of the measured run.
 - **Bottlenecks:** one serial build lane per feature (parallel experiments designed but not wired), LLM output tokens ("output volume is the wall"), a single machine (local deploy only, one drive per project), and human latency at every gate.
-- **Levers that worked:** per-step model/effort tiering. `effort=low` was "the dominant win"; haiku under-delivered on reasoning-heavy turns.
+- **Levers that worked:** per-step model/effort tiering. `effort=low` was "the dominant win"; the smallest model tier under-delivered on reasoning-heavy turns.
 - **How I'd scale it:** test-impact-based verification per cycle with the full suite only at acceptance; worktree + paired-branch executors for independent stories; hard per-story dollar/time budgets.
 
 ## 6. How I'd explain it
