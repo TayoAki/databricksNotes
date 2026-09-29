@@ -8,7 +8,7 @@ What's here isn't a summary of the repos. It's what I'd **do** with a customer, 
 - **[Exercises](exercises/)**: five runnable, customer-shaped problems (PySpark 4.0.1 + Delta 4.0.0), each with tests and a walkthrough.
 - **[Case studies](case-studies/)**: real bugs found by reading the repos and proved by running them, including my own mistakes.
 - **[Repo notes](repos/)**: one page per repo: how it works, what to steal, what's wrong, how to explain it.
-- **[Cheatsheets](cheatsheets/)**: patterns, system-table checks, platform fundamentals, and a question bank.
+- **[Cheatsheets](cheatsheets/)**: patterns, system-table checks, platform fundamentals, nine pipeline failure modes with ready-made prompts, and a question bank.
 - **[Appendix](appendix/deep-read-reports/)**: the raw deep-read reports, with a list of what I re-verified in each.
 
 ## Where to look for each criterion

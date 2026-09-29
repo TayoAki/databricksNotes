@@ -121,6 +121,9 @@ SERIES = [
               "Cost, compute, jobs and governance checks over system tables, with the five traps and honest denominators."),
              ("platform-fundamentals.md", "cheat-platform", "Platform fundamentals",
               "Setting up a customer platform: expensive decisions, identity, Unity Catalog, networking, cost, CI/CD and the first 90 days."),
+             ("pipeline-failure-modes.md", "cheat-failures", "Pipeline failure modes",
+              "Schema drift, silent casts, missing values, watermarks, late data, time zones, duplicates, fan-out and bad keys: "
+              "the fix for each, a prompt that gets AI to write it, and what to check."),
              ("interview-question-bank.md", "cheat-questions", "Interview question bank",
               "Short spoken answers grouped by the four criteria, each linked to its evidence."),
          ]),
@@ -165,7 +168,7 @@ HARNESS_ORDER = ["exercises/requirements.txt", "exercises/pytest.ini", "exercise
 FENCE_LABELS = {"python": "Python", "py": "Python", "sql": "SQL", "ts": "TypeScript", "typescript": "TypeScript",
                 "js": "JavaScript", "javascript": "JavaScript", "yaml": "YAML", "yml": "YAML", "json": "JSON",
                 "hcl": "HCL", "terraform": "Terraform", "bash": "Shell", "sh": "Shell", "shell": "Shell",
-                "diff": "Diff", "text": "", "ini": "INI", "toml": "TOML"}
+                "diff": "Diff", "text": "", "ini": "INI", "toml": "TOML", "prompt": ""}
 STAMP = re.compile(r"\b(CONFIRMED|SUSPECTED|REFUTED)\b")
 TITLE_PREFIX = re.compile(r"^(?:Case study \d+|Exercise \d+|\d{2}\.)\s*:?\s*")
 EXTERNAL = re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*:")
@@ -264,8 +267,14 @@ def highlight_lines(code: str, lexer) -> list[str]:
 def codeblock_html(code: str, lang: str) -> str:
     lang = lang.lower()
     label = FENCE_LABELS.get(lang, lang.upper())
+    if lang == "prompt":
+        # A prompt is prose hard-wrapped for GitHub: reflow each paragraph so it wraps to the
+        # screen and the Copy button yields clean paragraphs to paste into the Assistant.
+        code = "\n\n".join(" ".join(line.strip() for line in para.splitlines())
+                           for para in code.strip("\n").split("\n\n"))
     body = "\n".join(highlight_lines(code, lexer_for(lang)))
-    return (f'<div class="codeblock"><div class="codebar"><span>{esc(label)}</span>'
+    wrap = " wrap" if lang in ("text", "prompt") else ""  # prose wraps; diagrams and code keep their lines
+    return (f'<div class="codeblock{wrap}"><div class="codebar"><span>{esc(label)}</span>'
             f'<button class="copy" type="button">Copy</button></div>'
             f'<pre><code>{body}</code></pre></div>\n')
 
@@ -1361,6 +1370,7 @@ h2:hover > .anchor,h3:hover > .anchor,h4:hover > .anchor,h5:hover > .anchor,h6:h
 .copy{flex:none;font:500 .72rem/1 var(--sans);text-transform:none;letter-spacing:0;color:var(--ink-2);background:transparent;border:1px solid var(--rule);border-radius:5px;padding:.32rem .6rem;cursor:pointer}
 .copy:hover{color:var(--ink);background:var(--bg-raised)}
 .codeblock pre{margin:0;padding:.85rem 1rem 1rem;overflow-x:auto;font:400 .8rem/1.6 var(--mono);tab-size:4}
+.codeblock.wrap pre{white-space:pre-wrap;overflow-wrap:anywhere}
 .codefile{margin-top:0}
 .codefile pre{margin:0;padding:.55rem 0 .85rem;overflow-x:auto;font:400 .8rem/1.62 var(--mono);tab-size:4}
 .codefile code{display:inline-block;min-width:100%}

@@ -30,6 +30,8 @@ The build fails if any link or `#anchor` in the notes doesn't resolve. It then r
 
 Add the file, then add a row to `SERIES` in `build.py` with the note's reference code, sidebar title and one-line summary. The build refuses notes it doesn't know about. Scripts are picked up automatically; a script without a module docstring needs an entry in `CODE_DESCRIPTIONS`.
 
+Fence a prompt meant for pasting into an AI as ```` ```prompt ````. GitHub shows it as written; the blog reflows its paragraphs to fit the screen, and its Copy button yields clean paragraphs.
+
 ## Publishing
 
 The site is published as a private Claude artifact at <https://claude.ai/artifact/W9vGJU3QMTjxBE7Rsj3Fgx> (visible only to its owner until shared from its Share menu). To update it, rebuild with that link so the copy-link buttons keep working:

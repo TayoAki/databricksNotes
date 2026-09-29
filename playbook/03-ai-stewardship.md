@@ -31,6 +31,8 @@ A real example, the kind I'd type during the interview:
 
 Why it works: grain, contract, the NULL rule and the join type are stated; it asks for **assumptions**, which is where the Assistant's guesses become visible.
 
+Nine more prompts in this shape, one for each common pipeline failure (schema drift, silent casts, late data, duplicates and others), each with what to check in the answer, are in [`cheatsheets/pipeline-failure-modes.md`](../cheatsheets/pipeline-failure-modes.md).
+
 ## 3. Ground it: "Extract, Don't Generate"
 
 The single most valuable rule from vibe-coding-workshop-template: **every table, column and enum value comes from the catalog, never from model memory.**

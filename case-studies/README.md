@@ -37,6 +37,7 @@ All scripts locate `exercises/` relative to themselves, so they run from any dir
 | [`lakeflow_validation_gaps.py`](evidence/lakeflow_validation_gaps.py) | [`repos/lakeflow_framework.md`](../repos/lakeflow_framework.md) (Draft 7 `dependentSchemas`, suffix str) | `jsonschema` |
 | [`scd_filter_before_rank.py`](evidence/scd_filter_before_rank.py) | [`repos/databricks-waf.md`](../repos/databricks-waf.md), system-tables cheatsheet | exercises env |
 | [`null_semantics_table.py`](evidence/null_semantics_table.py) | [`playbook/07-null-semantics.md`](../playbook/07-null-semantics.md) | exercises env |
+| [`pipeline_failure_modes.py`](evidence/pipeline_failure_modes.py) | [`cheatsheets/pipeline-failure-modes.md`](../cheatsheets/pipeline-failure-modes.md) (all nine failure modes) | exercises env |
 
 ## Themes across the case studies
 
